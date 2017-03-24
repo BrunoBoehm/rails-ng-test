@@ -2,7 +2,8 @@
   'use strict';
 
   // each time called by the route we call a new instance of the HomeController constructor function
-  function TweetsController() {
+  // we inject our TweetFactory
+  function TweetsController(TweetFactory) {
     var vm = this;
 
     // callable methods on the vm
@@ -27,7 +28,9 @@
     // called by activate
     // http://localhost:3000/tweets JSON
     function getTweets(){
-
+      return TweetFactory.getTweets()
+                          .then(setTweets)
+                          // TweetFactory.getTweets() returns data to us, we need to have a callback on the promise
     }
 
     // vm method
@@ -48,6 +51,14 @@
     // vm method
     function deleteTweet(){
 
+    }
+
+
+
+    // callbacks
+    function setTweets(data){
+      // new callable attribute on the vm
+      return vm.tweets = data;
     }
 
   };
