@@ -40,7 +40,11 @@
 
     // vm method
     function createTweet(){
-
+      // console.log(vm.newTweet)
+      // we now need to pass it along to our factory for sending it to the database
+      return TweetFactory.createTweet(vm.newTweet)
+                          .then(getTweets)
+                          // when it comes back we want to relist all of our tweets
     }
 
     // vm method

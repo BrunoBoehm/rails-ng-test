@@ -29,7 +29,24 @@
 
     }
 
-    function createTweet(){
+    // this function will receive a tweet parameter from the TweetsController
+    function createTweet(tweet){
+      // we're going to send a request for POST
+      var req = {
+        method: 'POST',
+        url: '/tweets',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          tweet: tweet
+        }
+      };
+        // this is sent into tweet_params
+
+      return $http(req)
+                .catch(handleError)
+                // we're just expecting an answer if there is an error since it's a post request
 
     }
 
